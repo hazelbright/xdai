@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title: PyScript</title>
+    <py-env>
+        - numpy
+        - matplotlib
+    </py-env>
+</head>
+<body>
+    <script>
+        var q = 3;
+        function createObject(object, variableName){
+            //Bind a variable whose name is the string variableName
+            // to the object called 'object'
+            let execString = variableName + " = object"
+            console.log("Running `" + execString + "`");
+            eval(execString)
+        }
+    </script>
+    <py-script>
+        import js
+        from pyodide import create_proxy
+
+         
+        p = 4
+        js.createObject(create_proxy(p), "pq")
+
+        print("this is the first pyscript")
+        #print(p)
+    </py-script>
+    <py-script>
+        from js import p, q
+        print("this is the second pyscript")
+        print(p)
+        print(q)
+    </py-script>
+</body>
+</html>
